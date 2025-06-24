@@ -10,18 +10,18 @@ model = LinearRegression()
 model.fit(x, y)
 
 # prediksi nilai berdasarkan ukuran balige
-x_pred = np.array([[8]])
+x_pred = np.array([[5]])
 prediksi = model.predict(x_pred)
 
 # Output
 print("Koefisien (nilai prediksi per balige):", model.coef_[0])
 print("Intercept:", model.intercept_)
-print("Prediksi nilai jika jumlah balige = 8:", prediksi[0])
+print("Prediksi nilai jika jumlah balige = 5:", prediksi[0])
 
 # Visualisasi
 plt.scatter(x, y, color='blue', label='data asli')
 plt.plot(x, model.predict(x), color='red', label='regresi linear')
-plt.scatter(x_pred, prediksi, color='green', label='prediksi (8 balige)')
+plt.scatter(x_pred, prediksi, color='green', label='prediksi (5 jam)')
 plt.xlabel('Jumlah balige')
 plt.ylabel('Nilai (skor)')
 plt.title('Regresi Linear: jumlah balige vs nilai')
