@@ -3,28 +3,31 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Data
-x = np.array([1, 2, 3, 4, 5, 6, 7]).reshape(-1, 1)
-y = np.array([50, 60, 65, 80, 85, 90, 100])
+X = np.array([1, 2, 3, 4]).reshape(-1, 1)
+Y = np.array([60, 65, 70, 75])
 
+# Membuat model regresi linear
 model = LinearRegression()
-model.fit(x, y)
+model.fit(X, Y)
 
-# prediksi nilai berdasarkan ukuran balige
-x_pred = np.array([[5]])
-prediksi = model.predict(x_pred)
+# Prediksi nilai berdasarkan waktu belajar
+Y_pred = model.predict(X)
 
-# Output
-print("Koefisien (nilai prediksi per balige):", model.coef_[0])
+# Prediksi nilai jika belajar 5 jam
+prediksi_5_jam = model.predict([[5]])
+
+# Output koefisien dan hasil prediksi
+print("Rata-rata peningkatan nilai per jam belajar:", model.coef_[0])
 print("Intercept:", model.intercept_)
-print("Prediksi nilai jika jumlah balige = 5:", prediksi[0])
+print("Prediksi nilai jika belajar 5 jam:", prediksi_5_jam[0])
 
 # Visualisasi
-plt.scatter(x, y, color='blue', label='data asli')
-plt.plot(x, model.predict(x), color='red', label='regresi linear')
-plt.scatter(x_pred, prediksi, color='green', label='prediksi (5 jam)')
-plt.xlabel('Jumlah balige')
-plt.ylabel('Nilai (skor)')
-plt.title('Regresi Linear: jumlah balige vs nilai')
+plt.scatter(X, Y, color='blue', label='Data Asli')
+plt.plot(X, Y_pred, color='red', label='Garis Regresi')
+plt.scatter(5, prediksi_5_jam, color='green', label='Prediksi (5 jam)')
+plt.title('Regresi Linear: Waktu Belajar vs Nilai Ujian')
+plt.xlabel('Waktu Belajar (jam)')
+plt.ylabel('Nilai Ujian')
 plt.legend()
 plt.grid(True)
 plt.show()
